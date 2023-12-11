@@ -4,7 +4,7 @@ pipeline {
         stage('Init') {
             steps {
                 sh '''
-                ssh -i ~/.ssh/id_rsa jenkins10.154.0.55 << EOF
+                ssh -i ~/.ssh/id_rsa jenkins10.156.0.2 << EOF
                 docker stop flask-app || echo "flask-app not running!"
                 docker rm flask-app || echo "flask-app not running!"
                 '''
@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh '''
-                ssh -i ~/.ssh/id_rsa jenkins10.154.0.55 << EOF
+                ssh -i ~/.ssh/id_rsa jenkins10.156.0.2 << EOF
                 docker run -d -p 80:8080 --name flask-app s90hef/python-api
                 '''
             }
